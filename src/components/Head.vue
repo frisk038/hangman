@@ -2,7 +2,7 @@
     <div class="head">
         <button class="leadBtn" />
         <h1>WORSONE</h1>
-        <button class="helpBtn" />
+        <button class="helpBtn" @click.self="$emit('needHelp')" />
     </div>
     <div class="sep">
         <hr />
