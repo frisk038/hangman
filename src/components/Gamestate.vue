@@ -59,7 +59,7 @@ export default {
 <style>
 .gamestate {
     width: 360px;
-    height: 140px;
+    height: 130px;
     display: flex;
     justify-content: center;
 }
