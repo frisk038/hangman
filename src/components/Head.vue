@@ -1,7 +1,9 @@
 <template>
+<div class="head">
     <button class="leadBtn" />
-    WORSONE
+    <h1>WORSONE</h1>
     <button class="helpBtn" />
+</div>
 </template>
 
 <script>
@@ -17,6 +19,7 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 10px;
+    display: flex;
 }
 .helpBtn {
     background: url("./icons/help.png") no-repeat;
@@ -24,5 +27,13 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 10px;
+    display: flex;
 }
-</style> 
+.head {
+    width: 600px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 5px;
+}
+</style>

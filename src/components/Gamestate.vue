@@ -1,6 +1,7 @@
 <template>
-    <span>{{ smileyState }}</span>
-    <br />
+<div class="gamestate">
+    <h1>{{ smileyState }}</h1>
+</div>
 </template>
 
 <script>
@@ -55,6 +56,10 @@ export default {
 
 }
 </script>
-
 <style>
+.gamestate {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+}
 </style>

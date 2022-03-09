@@ -6,19 +6,17 @@ import Guessboard from "./components/Guessboard.vue";
 </script>
 
 <template>
-  <header>
+  <div class="headr">
     <Head></Head>
-  </header>
-
-  <main>
-    <h1>{{ letter }}</h1>
-    <Guessboard :guessWord="guessWord"></Guessboard>
-    <Gamestate :nbFail="nbFail"></Gamestate>
-  </main>
-
-  <footer>
-    <Keyboard @typed="typed"></Keyboard>
-  </footer>
+  </div>
+  <div class="game">
+      <div class="guessword">
+        <h1>{{ letter }}</h1>
+      </div>
+      <Guessboard :guessWord="guessWord"></Guessboard>
+      <Gamestate :nbFail="nbFail"></Gamestate>
+      <Keyboard @typed="typed"></Keyboard>
+  </div>
 </template>
 
 <script>
@@ -58,12 +56,36 @@ export default {
     }
   },
   created() {
-    this.secretWord = ["c", "h", "e", "r", "i", "e"];
+    this.secretWord = ["a","n","t","i","c","o","n","s","t","i","t","u","t","i","o","n","n","e","l","l","e","m","e","n","t"];
     this.guessWord = new Array(this.secretWord.length);
     this.guessWord.fill("_");
   }
 }
 
 </script>
+
 <style>
+.guessword{
+  width: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.game {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: -10px;
+}
+
+.headr {
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
 </style>
