@@ -10,12 +10,12 @@ import Guessboard from "./components/Guessboard.vue";
     <Head></Head>
   </div>
   <div class="game">
-      <div class="guessword">
-        <h1>{{ letter }}</h1>
-      </div>
-      <Guessboard :guessWord="guessWord"></Guessboard>
-      <Gamestate :nbFail="nbFail"></Gamestate>
-      <Keyboard @typed="typed"></Keyboard>
+    <div class="guessword">
+      <h1>{{ letter }}</h1>
+    </div>
+    <Guessboard :guessWord="guessWord"></Guessboard>
+    <Gamestate :nbFail="nbFail"></Gamestate>
+    <Keyboard @typed="typed"></Keyboard>
   </div>
 </template>
 
@@ -56,7 +56,7 @@ export default {
     }
   },
   created() {
-    this.secretWord = ["a","n","t","i","c","o","n","s","t","i","t","u","t","i","o","n","n","e","l","l","e","m","e","n","t"];
+    this.secretWord = ["a", "n", "t", "i", "c", "o", "n", "s", "t", "i", "t", "u", "t"];
     this.guessWord = new Array(this.secretWord.length);
     this.guessWord.fill("_");
   }
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style>
-.guessword{
+.guessword {
   width: 50px;
   display: flex;
   justify-content: center;
@@ -77,7 +77,6 @@ export default {
   justify-content: center;
   align-content: center;
   align-items: center;
-  margin: -10px;
 }
 
 .headr {

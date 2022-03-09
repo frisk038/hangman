@@ -1,9 +1,12 @@
 <template>
-<div class="head">
-    <button class="leadBtn" />
-    <h1>WORSONE</h1>
-    <button class="helpBtn" />
-</div>
+    <div class="head">
+        <button class="leadBtn" />
+        <h1>WORSONE</h1>
+        <button class="helpBtn" />
+    </div>
+    <div class="sep">
+        <hr />
+    </div>
 </template>
 
 <script>
@@ -30,10 +33,13 @@ export default {
     display: flex;
 }
 .head {
-    width: 600px;
+    width: 360px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     margin: 5px;
+}
+.sep {
+    width: 100%;
 }
 </style>
