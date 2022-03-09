@@ -1,7 +1,8 @@
 <script setup>
 import Head from "./components/Head.vue";
 import Keyboard from "./components/Keyboard.vue";
-import Gameboard from "./components/Gameboard.vue";
+import Gamestate from "./components/Gamestate.vue";
+import Guessboard from "./components/Guessboard.vue";
 </script>
 
 <template>
@@ -11,7 +12,8 @@ import Gameboard from "./components/Gameboard.vue";
 
   <main>
     <h1>{{ letter }}</h1>
-    <Gameboard :nbFail="nbFail"></Gameboard>
+    <Guessboard :guessWord="guessWord"></Guessboard>
+    <Gamestate :nbFail="nbFail"></Gamestate>
   </main>
 
   <footer>
@@ -23,16 +25,42 @@ import Gameboard from "./components/Gameboard.vue";
 export default {
   data() {
     return {
-      secretWord: "maison",
+      secretWord: [],
+      guessWord: [],
       nbFail: 0,
       letter: "_",
     }
   },
   methods: {
     typed(key) {
-      this.nbFail++;
-      this.letter = key
+      if (key == "ok") {
+        this.checkLetter()
+      }
+      else {
+        this.letter = key
+      }
+    },
+    checkLetter() {
+      var found = false;
+      if (this.letter != "_") {
+        for (let i = 0; i < this.secretWord.length; i++) {
+          const secretLetter = this.secretWord[i];
+          if (secretLetter == this.letter) {
+            this.guessWord[i] = secretLetter
+            found = true
+          }
+        }
+        if (found == false) {
+          this.nbFail++;
+        }
+        this.letter = "_"
+      }
     }
+  },
+  created() {
+    this.secretWord = ["c", "h", "e", "r", "i", "e"];
+    this.guessWord = new Array(this.secretWord.length);
+    this.guessWord.fill("_");
   }
 }
 
