@@ -9,10 +9,12 @@ import Gameboard from "./components/Gameboard.vue";
     <Head></Head>
   </header>
 
-  <main></main>
+  <main>
+    <h1>{{ letter }}</h1>
+    <Gameboard :nbFail="nbFail"></Gameboard>
+  </main>
 
   <footer>
-    <Gameboard :nbFail="nbFail"></Gameboard>
     <Keyboard @typed="typed"></Keyboard>
   </footer>
 </template>
@@ -22,13 +24,14 @@ export default {
   data() {
     return {
       secretWord: "maison",
-      nbFail: 0
+      nbFail: 0,
+      letter: "_",
     }
   },
   methods: {
     typed(key) {
       this.nbFail++;
-      console.log(key)
+      this.letter = key
     }
   }
 }
