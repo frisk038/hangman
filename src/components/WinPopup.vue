@@ -24,7 +24,53 @@ export default {
     props: ['nbFail'],
     methods: {
         generateClipboard() {
-            var text = "poisoned\n\n"
+            var text = "Poisoned\n\n"
+            switch (this.nbFail) {
+                case 0:
+                    text += "A fini avec tout ces PV !\n"
+                    text += "🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100%\n\n"
+                    break;
+                case 1:
+                    text += "Bravo !\n"
+                    text += "🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜️  90%\n\n"
+                    break;
+                case 2:
+                    text += "Bravo !\n"
+                    text += "🟩🟩🟩🟩🟩🟩🟩🟩⬜️⬜️  80%\n\n"
+                    break;
+                case 3:
+                    text += "Bravo !\n"
+                    text += "🟩🟩🟩🟩🟩🟩🟩⬜️⬜️⬜️  70%\n\n"
+                    break;
+                case 4:
+                    text += "Il a transpiré...\n"
+                    text += "🟨🟨🟨🟨🟨🟨⬜️⬜️⬜️⬜️  60%\n\n"
+                    break;
+                case 5:
+                    text += "Il a transpiré...\n"
+                    text += "🟨🟨🟨🟨🟨⬜️⬜️⬜️⬜️⬜️  50%\n\n"
+                    break;
+                case 6:
+                    text += "Il a transpiré...\n"
+                    text += "🟧🟧🟧🟧⬜️⬜️⬜️⬜️⬜️⬜️  40%\n\n"
+                    break;
+                case 7:
+                    text += "Il a transpiré...\n"
+                    text += "🟧🟧🟧⬜️⬜️⬜️⬜️⬜️⬜️⬜️  30%\n\n"
+                    break;
+                case 8:
+                    text += "A eu chaud aux fesses !\n"
+                    text += "🟥🟥⬜️⬜️⬜️⬜️⬜️⬜️⬜️⬜️  20%\n\n"
+                    break;
+                case 9:
+                    text += "A eu chaud aux fesses !\n"
+                    text += "🟥⬜️⬜️⬜️⬜️⬜️⬜️⬜️⬜️⬜️  10%\n\n"
+                    break;
+                case 10:
+                    text += "A cassé sa pipe !\n"
+                    text += "⬜️⬜️⬜️⬜️⬜️⬜️⬜️⬜️⬜️⬜️  0%\n\n"
+                    break;
+            }
             text += '\nhttps://poisoned.netlify.app'
             this.copyToClipboard(text)
         },
