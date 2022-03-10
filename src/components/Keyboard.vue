@@ -2,36 +2,36 @@
     <div class="keyboard">
         <div class="keys">
             <div class="firstrow">
-                <button class="key lettera" @click="$emit('typed', 'a')" />
-                <button class="key letterz" @click="$emit('typed', 'z')" />
-                <button class="key lettere" @click="$emit('typed', 'e')" />
-                <button class="key letterr" @click="$emit('typed', 'r')" />
-                <button class="key lettert" @click="$emit('typed', 't')" />
-                <button class="key lettery" @click="$emit('typed', 'y')" />
-                <button class="key letteru" @click="$emit('typed', 'u')" />
-                <button class="key letteri" @click="$emit('typed', 'i')" />
-                <button class="key lettero" @click="$emit('typed', 'o')" />
-                <button class="key letterp" @click="$emit('typed', 'p')" />
+                <button class="key lettera" @click="$emit('typed', 'A')" />
+                <button class="key letterz" @click="$emit('typed', 'Z')" />
+                <button class="key lettere" @click="$emit('typed', 'E')" />
+                <button class="key letterr" @click="$emit('typed', 'R')" />
+                <button class="key lettert" @click="$emit('typed', 'T')" />
+                <button class="key lettery" @click="$emit('typed', 'Y')" />
+                <button class="key letteru" @click="$emit('typed', 'U')" />
+                <button class="key letteri" @click="$emit('typed', 'I')" />
+                <button class="key lettero" @click="$emit('typed', 'O')" />
+                <button class="key letterp" @click="$emit('typed', 'P')" />
             </div>
             <div class="secondrow">
-                <button class="key letterq" @click="$emit('typed', 'q')" />
-                <button class="key letters" @click="$emit('typed', 's')" />
-                <button class="key letterd" @click="$emit('typed', 'd')" />
-                <button class="key letterf" @click="$emit('typed', 'f')" />
-                <button class="key letterg" @click="$emit('typed', 'g')" />
-                <button class="key letterh" @click="$emit('typed', 'h')" />
-                <button class="key letterj" @click="$emit('typed', 'j')" />
-                <button class="key letterk" @click="$emit('typed', 'k')" />
-                <button class="key letterl" @click="$emit('typed', 'l')" />
-                <button class="key letterm" @click="$emit('typed', 'm')" />
+                <button class="key letterq" @click="$emit('typed', 'Q')" />
+                <button class="key letters" @click="$emit('typed', 'S')" />
+                <button class="key letterd" @click="$emit('typed', 'D')" />
+                <button class="key letterf" @click="$emit('typed', 'F')" />
+                <button class="key letterg" @click="$emit('typed', 'G')" />
+                <button class="key letterh" @click="$emit('typed', 'H')" />
+                <button class="key letterj" @click="$emit('typed', 'J')" />
+                <button class="key letterk" @click="$emit('typed', 'K')" />
+                <button class="key letterl" @click="$emit('typed', 'L')" />
+                <button class="key letterm" @click="$emit('typed', 'M')" />
             </div>
             <div class="lastrow">
-                <button class="key letterw" @click="$emit('typed', 'w')" />
-                <button class="key letterx" @click="$emit('typed', 'x')" />
-                <button class="key letterc" @click="$emit('typed', 'c')" />
-                <button class="key letterv" @click="$emit('typed', 'v')" />
-                <button class="key letterb" @click="$emit('typed', 'b')" />
-                <button class="key lettern" @click="$emit('typed', 'n')" />
+                <button class="key letterw" @click="$emit('typed', 'W')" />
+                <button class="key letterx" @click="$emit('typed', 'X')" />
+                <button class="key letterc" @click="$emit('typed', 'C')" />
+                <button class="key letterv" @click="$emit('typed', 'V')" />
+                <button class="key letterb" @click="$emit('typed', 'B')" />
+                <button class="key lettern" @click="$emit('typed', 'N')" />
             </div>
         </div>
         <div class="submit">

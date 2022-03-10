@@ -11,7 +11,7 @@
 
 <script>
 export default {
-
+    emits: ['needHelp'],
 }
 </script>
 

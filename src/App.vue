@@ -70,10 +70,16 @@ export default {
       }
     }
   },
-  created() {
-    this.secretWord = ["a", "n", "t", "i", "c", "o", "n", "s", "t", "i", "t", "u", "t"];
-    this.guessWord = new Array(this.secretWord.length);
-    this.guessWord.fill("_");
+  async created() {
+    try {
+      let response = await fetch("https://hangman-poisoned.herokuapp.com/getsecret");
+      var secretJs = await response.json();
+      this.secretWord = secretJs.secret;
+      this.guessWord = new Array(this.secretWord.length);
+      this.guessWord.fill("_");
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
