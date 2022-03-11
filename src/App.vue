@@ -46,21 +46,7 @@ function getCookie(cname) {
   return "";
 }
 
-function storeGameState() {
-  this.setCookieToMidnight("gamestate", this.gameState)
-  this.setCookieToMidnight("nbfail", this.nbFail)
-}
 
-function readGameState() {
-  var state = this.getCookie("gamestate")
-  if (state != "") {
-    this.gameState = state
-  }
-  var fail = this.getCookie("nbfail")
-  if (fail != "") {
-    this.nbFail = fail
-  }
-}
 
 export default {
   data() {
@@ -109,7 +95,21 @@ export default {
           this.storeGameState()
         }
       }
-    }
+    },
+    storeGameState() {
+      this.setCookieToMidnight("gamestate", this.gameState)
+      this.setCookieToMidnight("nbfail", this.nbFail)
+    },
+    readGameState() {
+      var state = this.getCookie("gamestate")
+      if (state != "") {
+        this.gameState = state
+      }
+      var fail = this.getCookie("nbfail")
+      if (fail != "") {
+        this.nbFail = fail
+      }
+    },
   },
   async created() {
     try {
@@ -127,7 +127,7 @@ export default {
     }
   },
   mounted(){
-    this.readGameState()
+    this.readGameState();
   }
 }
 
