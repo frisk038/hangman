@@ -25,6 +25,43 @@ import WinPopup from "./components/WinPopup.vue";
 </template>
 
 <script>
+function setCookieToMidnight(cname, cvalue) {
+  let date = new Date();
+  var midnight = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
+  document.cookie = cname + "=" + cvalue + ";expires=" + midnight.toUTCString();
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function storeGameState() {
+  this.setCookieToMidnight("gamestate", this.gameState)
+  this.setCookieToMidnight("nbfail", this.nbFail)
+}
+
+function readGameState() {
+  var state = this.getCookie("gamestate")
+  if (state != "") {
+    this.gameState = state
+  }
+  var fail = this.getCookie("nbfail")
+  if (fail != "") {
+    this.nbFail = fail
+  }
+}
+
 export default {
   data() {
     return {
@@ -66,8 +103,10 @@ export default {
         this.letter = "_"
         if (this.nbFail == this.nbMaxPlay) {
           this.gameState = -1
+          this.storeGameState()
         } else if (!this.guessWord.includes("_")) {
           this.gameState = 1
+          this.storeGameState()
         }
       }
     }
@@ -86,6 +125,9 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  },
+  mounted(){
+    this.readGameState()
   }
 }
 
