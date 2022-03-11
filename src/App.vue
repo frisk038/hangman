@@ -121,12 +121,12 @@ export default {
       setCookieAndExpire("userID", this.userID, forEver)
     },
     async saveScore() {
-      console.log(this.userID, this.secretNumber, this.nbFail)
+      // console.log(this.userID, this.secretNumber, this.nbFail)
       try {
         let post = await fetch("https://hangman-poisoned.herokuapp.com/score",
           {
             method: "POST",
-            // headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify({
               'user_id': this.userID,
               'secret_num': this.secretNumber,
@@ -152,11 +152,11 @@ export default {
     } catch (error) {
       console.log(error);
     }
+    this.saveScore();
   },
   mounted() {
     this.readGameState();
     this.setUserId();
-    this.saveScore();
   }
 }
 
