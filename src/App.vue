@@ -1,4 +1,5 @@
 <script setup>
+import { v4 as uuidv4 } from 'uuid';
 import Head from "./components/Head.vue";
 import Keyboard from "./components/Keyboard.vue";
 import Gamestate from "./components/Gamestate.vue";
@@ -25,10 +26,8 @@ import WinPopup from "./components/WinPopup.vue";
 </template>
 
 <script>
-function setCookieToMidnight(cname, cvalue) {
-  let date = new Date();
-  var midnight = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
-  document.cookie = cname + "=" + cvalue + ";expires=" + midnight.toUTCString();
+function setCookieAndExpire(cname, cvalue, expire) {
+  document.cookie = cname + "=" + cvalue + ";expires=" + expire.toUTCString();
 }
 
 function getCookie(cname) {
@@ -57,7 +56,8 @@ export default {
       helpRequired: true,
       gameState: 0,
       secretNumber: 0,
-      mergedWord: ""
+      mergedWord: "",
+      userID: ""
     }
   },
   methods: {
@@ -88,15 +88,19 @@ export default {
         if (this.nbFail == this.nbMaxPlay) {
           this.gameState = -1
           this.storeGameState()
+          saveScore()
         } else if (!this.guessWord.includes("_")) {
           this.gameState = 1
           this.storeGameState()
+          this.saveScore()
         }
       }
     },
     storeGameState() {
-      setCookieToMidnight("gamestate", this.gameState)
-      setCookieToMidnight("nbfail", this.nbFail)
+      let date = new Date();
+      var midnight = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
+      setCookieAndExpire("gamestate", this.gameState, midnight)
+      setCookieAndExpire("nbfail", this.nbFail, midnight)
     },
     readGameState() {
       var state = getCookie("gamestate")
@@ -108,10 +112,37 @@ export default {
         this.nbFail = parseInt(fail)
       }
     },
+    setUserId() {
+      this.userID = getCookie("userID")
+      if (this.userID == "") {
+        this.userID = uuidv4()
+      }
+      var forEver = new Date("2030/01/01")
+      setCookieAndExpire("userID", this.userID, forEver)
+    },
+    async saveScore() {
+      console.log(this.userID, this.secretNumber, this.nbFail)
+      try {
+        let post = await fetch("https://hangman-poisoned.herokuapp.com/score",
+          {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              'user_id': this.userID,
+              'secret_num': this.secretNumber,
+              'score': this.nbFail
+            })
+          })
+        var resp = await post.json();
+        console.log(resp)
+      } catch (error) {
+        console.log(error);
+      }
+    }
   },
   async created() {
     try {
-      let response = await fetch("https://hangman-poisoned.herokuapp.com/getsecret");
+      let response = await fetch("https://hangman-poisoned.herokuapp.com/secret");
       var secretJs = await response.json();
       this.secretWord = secretJs.secret;
       this.secretNumber = secretJs.number;
@@ -126,6 +157,11 @@ export default {
   },
   mounted() {
     this.readGameState();
+    this.setUserId();
+    this.userID = uuidv4();
+    this.secretNumber = 3
+    this.score = 5
+    this.saveScore();
   }
 }
 
