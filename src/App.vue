@@ -8,7 +8,7 @@ import WinPopup from "./components/WinPopup.vue";
 </script>
 
 <template>
-  <HelpPopup v-show="helpRequired" @closeHelp="helpRequired = false"></HelpPopup>
+  <HelpPopup v-if="gameState == 0 && helpRequired" @closeHelp="helpRequired = false"></HelpPopup>
 
   <WinPopup v-if="gameState != 0" :nbFail="nbFail" :mergedWord="mergedWord"></WinPopup>
   <div class="headr">
@@ -34,7 +34,7 @@ function setCookieToMidnight(cname, cvalue) {
 function getCookie(cname) {
   let name = cname + "=";
   let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
+  for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
@@ -45,8 +45,6 @@ function getCookie(cname) {
   }
   return "";
 }
-
-
 
 export default {
   data() {
@@ -103,11 +101,11 @@ export default {
     readGameState() {
       var state = getCookie("gamestate")
       if (state != "") {
-        this.gameState = state
+        this.gameState = parseInt(state)
       }
       var fail = getCookie("nbfail")
       if (fail != "") {
-        this.nbFail = fail
+        this.nbFail = parseInt(fail)
       }
     },
   },
@@ -126,7 +124,7 @@ export default {
       console.log(error);
     }
   },
-  mounted(){
+  mounted() {
     this.readGameState();
   }
 }
