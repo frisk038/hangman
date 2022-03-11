@@ -126,15 +126,13 @@ export default {
         let post = await fetch("https://hangman-poisoned.herokuapp.com/score",
           {
             method: "POST",
-            headers: { 'Content-Type': 'application/json' },
+            // headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               'user_id': this.userID,
               'secret_num': this.secretNumber,
               'score': this.nbFail
             })
           })
-        var resp = await post.json();
-        console.log(resp)
       } catch (error) {
         console.log(error);
       }
@@ -158,9 +156,6 @@ export default {
   mounted() {
     this.readGameState();
     this.setUserId();
-    this.userID = uuidv4();
-    this.secretNumber = 3
-    this.score = 5
     this.saveScore();
   }
 }
