@@ -8,6 +8,7 @@
                 </div>
                 <div v-else>
                     <h1>Perdu 🥺</h1>
+                    <span>Le mot secret était : {{mergedWord}}</span><br>
                     <span>Arf, dommage! Retente ta chance demain!</span>
                 </div>
 
@@ -21,7 +22,7 @@
 
 <script>
 export default {
-    props: ['nbFail'],
+    props: ['nbFail', 'mergedWord'],
     methods: {
         generateClipboard() {
             var text = "Poisoned\n\n"

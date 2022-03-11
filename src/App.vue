@@ -10,7 +10,7 @@ import WinPopup from "./components/WinPopup.vue";
 <template>
   <HelpPopup v-show="helpRequired" @closeHelp="helpRequired = false"></HelpPopup>
 
-  <WinPopup v-if="gameState != 0" :nbFail="nbFail"></WinPopup>
+  <WinPopup v-if="gameState != 0" :nbFail="nbFail" :mergedWord="mergedWord"></WinPopup>
   <div class="headr">
     <Head @needHelp="helpRequired = true" :secretNumber="secretNumber"></Head>
   </div>
@@ -35,7 +35,8 @@ export default {
       nbMaxPlay: 10,
       helpRequired: true,
       gameState: 0,
-      secretNumber: 0
+      secretNumber: 0,
+      mergedWord: ""
     }
   },
   methods: {
@@ -79,6 +80,9 @@ export default {
       this.secretNumber = secretJs.number;
       this.guessWord = new Array(this.secretWord.length);
       this.guessWord.fill("_");
+      this.secretWord.forEach(letter => {
+        this.mergedWord += letter
+      });
     } catch (error) {
       console.log(error);
     }
