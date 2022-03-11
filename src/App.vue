@@ -12,7 +12,7 @@ import WinPopup from "./components/WinPopup.vue";
 
   <WinPopup v-if="gameState != 0" :nbFail="nbFail"></WinPopup>
   <div class="headr">
-    <Head @needHelp="helpRequired = true"></Head>
+    <Head @needHelp="helpRequired = true" :secretNumber="secretNumber"></Head>
   </div>
   <div class="game">
     <div class="guessword">
@@ -34,7 +34,8 @@ export default {
       letter: "_",
       nbMaxPlay: 10,
       helpRequired: true,
-      gameState: 0
+      gameState: 0,
+      secretNumber: 0
     }
   },
   methods: {
@@ -75,6 +76,7 @@ export default {
       let response = await fetch("https://hangman-poisoned.herokuapp.com/getsecret");
       var secretJs = await response.json();
       this.secretWord = secretJs.secret;
+      this.secretNumber = secretJs.number;
       this.guessWord = new Array(this.secretWord.length);
       this.guessWord.fill("_");
     } catch (error) {

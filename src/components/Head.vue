@@ -1,7 +1,7 @@
 <template>
     <div class="head">
         <button class="leadBtn" />
-        <h1>WORSONE</h1>
+        <h2>POISONED #{{secretNumber}} </h2>
         <button class="helpBtn" @click.self="$emit('needHelp')" />
     </div>
     <div class="sep">
@@ -12,6 +12,7 @@
 <script>
 export default {
     emits: ['needHelp'],
+    props: ['secretNumber'],
 }
 </script>
 
