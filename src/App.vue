@@ -97,15 +97,15 @@ export default {
       }
     },
     storeGameState() {
-      this.setCookieToMidnight("gamestate", this.gameState)
-      this.setCookieToMidnight("nbfail", this.nbFail)
+      setCookieToMidnight("gamestate", this.gameState)
+      setCookieToMidnight("nbfail", this.nbFail)
     },
     readGameState() {
-      var state = this.getCookie("gamestate")
+      var state = getCookie("gamestate")
       if (state != "") {
         this.gameState = state
       }
-      var fail = this.getCookie("nbfail")
+      var fail = getCookie("nbfail")
       if (fail != "") {
         this.nbFail = fail
       }
