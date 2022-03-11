@@ -88,7 +88,7 @@ export default {
         if (this.nbFail == this.nbMaxPlay) {
           this.gameState = -1
           this.storeGameState()
-          saveScore()
+          this.saveScore()
         } else if (!this.guessWord.includes("_")) {
           this.gameState = 1
           this.storeGameState()
