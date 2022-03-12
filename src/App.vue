@@ -183,7 +183,7 @@ export default {
     },
     async getTopPlayer() {
       try {
-        let response = await fetch("https://hangman-poisoned.herokuapp.com/top?secretnb=5");
+        let response = await fetch("https://hangman-poisoned.herokuapp.com/top?secretnb=" + this.secretNumber);
         var secretJs = await response.json();
         if (secretJs.status == "Ok") {
           this.ranking = []
@@ -195,22 +195,26 @@ export default {
         console.log(error);
       }
     },
+    async getSecret() {
+      try {
+        let response = await fetch("https://hangman-poisoned.herokuapp.com/secret");
+        var secretJs = await response.json();
+        this.secretWord = secretJs.secret;
+        this.secretNumber = secretJs.number;
+        this.guessWord = new Array(this.secretWord.length);
+        this.guessWord.fill("_");
+        this.secretWord.forEach(letter => {
+          this.mergedWord += letter
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      this.getTopPlayer()
+    }
   },
   async created() {
-    try {
-      let response = await fetch("https://hangman-poisoned.herokuapp.com/secret");
-      var secretJs = await response.json();
-      this.secretWord = secretJs.secret;
-      this.secretNumber = secretJs.number;
-      this.guessWord = new Array(this.secretWord.length);
-      this.guessWord.fill("_");
-      this.secretWord.forEach(letter => {
-        this.mergedWord += letter
-      });
-    } catch (error) {
-      console.log(error);
-    }
-    this.getTopPlayer()
+    this.getSecret()
+    //this.getTopPlayer()
   },
   mounted() {
     this.readGameState();
