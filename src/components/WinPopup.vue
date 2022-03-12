@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         generateClipboard() {
-            var text = "Poisoned\n\n"
+            var text = "Poisoned 🐍\n\n"
             switch (this.nbFail) {
                 case 0:
                     text += "A fini avec tout ces PV !\n"

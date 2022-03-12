@@ -130,6 +130,7 @@ export default {
       var username = getCookie("username")
       if (username != "") {
         this.cookieUserName = username
+        setCookieAndExpire("username", this.cookieUserName, new Date("2030/01/01"))
       }
     },
     setUserId() {
@@ -209,7 +210,6 @@ export default {
       } catch (error) {
         console.log(error);
       }
-      // this.getTopPlayer()
     }
   },
   async created() {
