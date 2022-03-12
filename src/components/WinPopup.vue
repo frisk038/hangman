@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-backdrop">
+    <div @click.self="$emit('closeWinPopup')" class="modal-backdrop">
         <div class="modal">
             <section class="modal-body">
                 <div v-if="nbFail != 10">
@@ -50,8 +50,13 @@
 
                 <div class="sharediv">
                     <h4>Copie ta partie pour la partager, garantie sans spoil.</h4>
-                    <div class="sharebtndiv">
-                        <button v-on:click="generateClipboard" class="sharebtn"></button>
+                    <div class="btndiv">
+                        <div class="sharebtndiv">
+                            <button v-on:click="generateClipboard" class="sharebtn"></button>
+                        </div>
+                        <div class="closebtndiv">
+                            <button @click="$emit('closeWinPopup')" class="closebtn"></button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -62,7 +67,7 @@
 <script>
 export default {
     props: ['nbFail', 'mergedWord', 'cookieUserName'],
-    emits: ['saveUser'],
+    emits: ['saveUser', 'closeWinPopup'],
     data() {
         return {
             username: ""
@@ -197,7 +202,9 @@ export default {
 }
 
 .sharediv {
-    text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 
 .sharebtn {
@@ -206,5 +213,18 @@ export default {
     height: 50px;
     background-size: cover;
     border-radius: 10px;
+}
+
+.closebtn {
+    background: url("./icons/cancel.png") no-repeat;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    border-radius: 10px;
+}
+.btndiv {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
 }
 </style>

@@ -14,11 +14,12 @@ import Ranking from "./components/Ranking.vue";
   <Ranking v-if="rankingRequired" @closeRanking="rankingRequired = false" :ranking="ranking"></Ranking>
 
   <WinPopup
-    v-if="gameState != 0"
+    v-if="gameState != 0 && showWinPopup"
     :nbFail="nbFail"
     :mergedWord="mergedWord"
     :cookieUserName="cookieUserName"
     @saveUser="saveUser"
+    @closeWinPopup="showWinPopup = false"
   ></WinPopup>
 
   <div class="headr">
@@ -73,12 +74,13 @@ export default {
       userID: "",
       cookieUserName: "",
       rankingRequired: false,
-      ranking: [{ name: 'WWW', score: 3 }, { name: 'XXX', score: 3 }, { name: 'GGH', score: 10 },]
+      showWinPopup: true,
+      ranking: []
     }
   },
   methods: {
     typed(key) {
-      if (this.nbFail < this.nbMaxPlay) {
+      if (this.nbFail < this.nbMaxPlay && this.gameState != 0) {
         if (key == "ok") {
           this.checkLetter()
         }
