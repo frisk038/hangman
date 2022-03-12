@@ -6,10 +6,12 @@ import Gamestate from "./components/Gamestate.vue";
 import Guessboard from "./components/Guessboard.vue";
 import HelpPopup from "./components/HelpPopup.vue";
 import WinPopup from "./components/WinPopup.vue";
+import Ranking from "./components/Ranking.vue";
 </script>
 
 <template>
   <HelpPopup v-if="helpRequired" @closeHelp="helpRequired = false"></HelpPopup>
+  <Ranking v-if="rankingRequired" @closeRanking="rankingRequired = false" :ranking="ranking"></Ranking>
 
   <WinPopup
     v-if="gameState != 0"
@@ -20,7 +22,11 @@ import WinPopup from "./components/WinPopup.vue";
   ></WinPopup>
 
   <div class="headr">
-    <Head @needHelp="helpRequired = true" :secretNumber="secretNumber"></Head>
+    <Head
+      @needHelp="helpRequired = true"
+      @showRanking="rankingRequired = true"
+      :secretNumber="secretNumber"
+    ></Head>
   </div>
   <div class="game">
     <div class="guessword">
@@ -65,7 +71,9 @@ export default {
       secretNumber: 0,
       mergedWord: "",
       userID: "",
-      cookieUserName: ""
+      cookieUserName: "",
+      rankingRequired: false,
+      ranking: [{ name: 'WWW', score: 3 }, { name: 'XXX', score: 3 }, { name: 'GGH', score: 10 },]
     }
   },
   methods: {

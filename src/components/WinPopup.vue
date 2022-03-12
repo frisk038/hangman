@@ -158,7 +158,6 @@ export default {
 }
 
 .username {
-    background-color: antiquewhite;
     display: flex;
     justify-content: center;
     height: 50px;
