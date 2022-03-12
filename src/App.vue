@@ -11,7 +11,14 @@ import WinPopup from "./components/WinPopup.vue";
 <template>
   <HelpPopup v-if="helpRequired" @closeHelp="helpRequired = false"></HelpPopup>
 
-  <WinPopup v-if="gameState != 0" :nbFail="nbFail" :mergedWord="mergedWord"></WinPopup>
+  <WinPopup
+    v-if="gameState != 0"
+    :nbFail="nbFail"
+    :mergedWord="mergedWord"
+    :cookieUserName="cookieUserName"
+    @saveUser="saveUser"
+  ></WinPopup>
+
   <div class="headr">
     <Head @needHelp="helpRequired = true" :secretNumber="secretNumber"></Head>
   </div>
@@ -57,7 +64,8 @@ export default {
       gameState: 0,
       secretNumber: 0,
       mergedWord: "",
-      userID: ""
+      userID: "",
+      cookieUserName: ""
     }
   },
   methods: {
@@ -111,6 +119,10 @@ export default {
       if (fail != "") {
         this.nbFail = parseInt(fail)
       }
+      var username = getCookie("username")
+      if (username != "") {
+        this.cookieUserName = username
+      }
     },
     setUserId() {
       this.userID = getCookie("userID")
@@ -130,9 +142,33 @@ export default {
             body: JSON.stringify({
               'user_id': this.userID,
               'secret_num': this.secretNumber,
-              'score': this.nbFail
+              'score': this.nbFail,
+              'user_name': this.cookieUserName
             })
           })
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async saveUser(username) {
+      try {
+        let post = await fetch("https://hangman-poisoned.herokuapp.com/user",
+          {
+            method: "POST",
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify({
+              'user_id': this.userID,
+              'secret_num': this.secretNumber,
+              'user_name': username
+            })
+          })
+        var response = await post.json();
+        if (response.status == "Ok") {
+          this.cookieUserName = username
+          setCookieAndExpire("username", this.cookieUserName, new Date("2030/01/01"))
+        } else {
+          alert("Oups 🙇🏾‍♂️ ce pseudo est déjà pris !")
+        }
       } catch (error) {
         console.log(error);
       }

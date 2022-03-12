@@ -6,13 +6,17 @@
                     <h1>Félicitations 🎉</h1>
                     <div class="wintext">
                         <h3>Bravo, tu as gagné! Reviens demain pour un nouveau défi.</h3>
-                        <h4>
-                            Tu peux aussi entrer ton pseudo pour la gloire
-                            <br />(3 chiffres/lettres max.)
-                        </h4>
                     </div>
 
-                    <div class="username" v-on:submit.prevent="saveUser">
+                    <h4 v-if="this.cookieUserName == ''" class="wintext">
+                        Tu peux aussi entrer ton pseudo pour la gloire
+                        <br />(3 chiffres/lettres max.)
+                    </h4>
+                    <div
+                        v-if="this.cookieUserName == ''"
+                        class="username"
+                        v-on:submit.prevent="$emit('saveUser', username)"
+                    >
                         <form class="unform">
                             <div class="inputtextdiv">
                                 <input
@@ -57,7 +61,8 @@
 
 <script>
 export default {
-    props: ['nbFail', 'mergedWord'],
+    props: ['nbFail', 'mergedWord', 'cookieUserName'],
+    emits: ['saveUser'],
     data() {
         return {
             username: ""
@@ -123,26 +128,7 @@ export default {
                 alert('Oups y a une erreur');
             }
         },
-        async saveUser() {
-            try {
-                let post = await fetch("https://hangman-poisoned.herokuapp.com/user",
-                    {
-                        method: "POST",
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({
-                            'user_id': this.userID,
-                            'secret_num': this.secretNumber,
-                            'score': this.nbFail,
-                            'username': this.username
-                        })
-                    })
-                var response = await post.json();
-                console.log(response)
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    },
+    }
 };
 </script>
 
@@ -172,6 +158,7 @@ export default {
 }
 
 .username {
+    background-color: antiquewhite;
     display: flex;
     justify-content: center;
     height: 50px;
