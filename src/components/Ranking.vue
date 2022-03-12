@@ -56,7 +56,7 @@ export default {
 .modal {
     background: #474747;
     box-shadow: 2px 2px 200px 1px;
-    width: 60%;
+    width: 80%;
     display: flex;
     flex-flow: column;
     align-content: center;
