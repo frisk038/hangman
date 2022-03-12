@@ -9,7 +9,7 @@ import WinPopup from "./components/WinPopup.vue";
 </script>
 
 <template>
-  <HelpPopup v-if="gameState == 0 && helpRequired" @closeHelp="helpRequired = false"></HelpPopup>
+  <HelpPopup v-if="helpRequired" @closeHelp="helpRequired = false"></HelpPopup>
 
   <WinPopup v-if="gameState != 0" :nbFail="nbFail" :mergedWord="mergedWord"></WinPopup>
   <div class="headr">
@@ -53,7 +53,7 @@ export default {
       nbFail: 0,
       letter: "_",
       nbMaxPlay: 10,
-      helpRequired: true,
+      helpRequired: false,
       gameState: 0,
       secretNumber: 0,
       mergedWord: "",
@@ -116,6 +116,7 @@ export default {
       this.userID = getCookie("userID")
       if (this.userID == "") {
         this.userID = uuidv4()
+        this.helpRequired = true
       }
       var forEver = new Date("2030/01/01")
       setCookieAndExpire("userID", this.userID, forEver)
