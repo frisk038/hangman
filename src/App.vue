@@ -180,7 +180,21 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    }
+    },
+    async getTopPlayer() {
+      try {
+        let response = await fetch("https://hangman-poisoned.herokuapp.com/top?secretnb=5");
+        var secretJs = await response.json();
+        if (secretJs.status == "Ok") {
+          this.ranking = []
+          secretJs.leaderboard.forEach(topUser => {
+            this.ranking.push({ name: topUser.user_name, score: 10 - topUser.score })
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   async created() {
     try {
@@ -196,6 +210,7 @@ export default {
     } catch (error) {
       console.log(error);
     }
+    this.getTopPlayer()
   },
   mounted() {
     this.readGameState();
