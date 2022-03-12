@@ -21,7 +21,7 @@ import WinPopup from "./components/WinPopup.vue";
     </div>
     <Guessboard :guessWord="guessWord"></Guessboard>
     <Gamestate :nbFail="nbFail"></Gamestate>
-    <Keyboard @typed="typed"></Keyboard>
+    <Keyboard @typed="typed" :letter="letter"></Keyboard>
   </div>
 </template>
 

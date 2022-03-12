@@ -2,51 +2,176 @@
     <div class="keyboard">
         <div class="keys">
             <div class="firstrow">
-                <button class="key lettera" @click="$emit('typed', 'A')" />
-                <button class="key letterz" @click="$emit('typed', 'Z')" />
-                <button class="key lettere" @click="$emit('typed', 'E')" />
-                <button class="key letterr" @click="$emit('typed', 'R')" />
-                <button class="key lettert" @click="$emit('typed', 'T')" />
-                <button class="key lettery" @click="$emit('typed', 'Y')" />
-                <button class="key letteru" @click="$emit('typed', 'U')" />
-                <button class="key letteri" @click="$emit('typed', 'I')" />
-                <button class="key lettero" @click="$emit('typed', 'O')" />
-                <button class="key letterp" @click="$emit('typed', 'P')" />
+                <button
+                    :disabled="this.disabledMap['A']"
+                    class="key lettera"
+                    @click="$emit('typed', 'A')"
+                />
+                <button
+                    :disabled="this.disabledMap['Z']"
+                    class="key letterz"
+                    @click="$emit('typed', 'Z')"
+                />
+                <button
+                    :disabled="this.disabledMap['E']"
+                    class="key lettere"
+                    @click="$emit('typed', 'E')"
+                />
+                <button
+                    :disabled="this.disabledMap['R']"
+                    class="key letterr"
+                    @click="$emit('typed', 'R')"
+                />
+                <button
+                    :disabled="this.disabledMap['T']"
+                    class="key lettert"
+                    @click="$emit('typed', 'T')"
+                />
+                <button
+                    :disabled="this.disabledMap['Y']"
+                    class="key lettery"
+                    @click="$emit('typed', 'Y')"
+                />
+                <button
+                    :disabled="this.disabledMap['U']"
+                    class="key letteru"
+                    @click="$emit('typed', 'U')"
+                />
+                <button
+                    :disabled="this.disabledMap['I']"
+                    class="key letteri"
+                    @click="$emit('typed', 'I')"
+                />
+                <button
+                    :disabled="this.disabledMap['O']"
+                    class="key lettero"
+                    @click="$emit('typed', 'O')"
+                />
+                <button
+                    :disabled="this.disabledMap['P']"
+                    class="key letterp"
+                    @click="$emit('typed', 'P')"
+                />
             </div>
             <div class="secondrow">
-                <button class="key letterq" @click="$emit('typed', 'Q')" />
-                <button class="key letters" @click="$emit('typed', 'S')" />
-                <button class="key letterd" @click="$emit('typed', 'D')" />
-                <button class="key letterf" @click="$emit('typed', 'F')" />
-                <button class="key letterg" @click="$emit('typed', 'G')" />
-                <button class="key letterh" @click="$emit('typed', 'H')" />
-                <button class="key letterj" @click="$emit('typed', 'J')" />
-                <button class="key letterk" @click="$emit('typed', 'K')" />
-                <button class="key letterl" @click="$emit('typed', 'L')" />
-                <button class="key letterm" @click="$emit('typed', 'M')" />
+                <button
+                    :disabled="this.disabledMap['Q']"
+                    class="key letterq"
+                    @click="$emit('typed', 'Q')"
+                />
+                <button
+                    :disabled="this.disabledMap['S']"
+                    class="key letters"
+                    @click="$emit('typed', 'S')"
+                />
+                <button
+                    :disabled="this.disabledMap['D']"
+                    class="key letterd"
+                    @click="$emit('typed', 'D')"
+                />
+                <button
+                    :disabled="this.disabledMap['F']"
+                    class="key letterf"
+                    @click="$emit('typed', 'F')"
+                />
+                <button
+                    :disabled="this.disabledMap['G']"
+                    class="key letterg"
+                    @click="$emit('typed', 'G')"
+                />
+                <button
+                    :disabled="this.disabledMap['H']"
+                    class="key letterh"
+                    @click="$emit('typed', 'H')"
+                />
+                <button
+                    :disabled="this.disabledMap['J']"
+                    class="key letterj"
+                    @click="$emit('typed', 'J')"
+                />
+                <button
+                    :disabled="this.disabledMap['K']"
+                    class="key letterk"
+                    @click="$emit('typed', 'K')"
+                />
+                <button
+                    :disabled="this.disabledMap['L']"
+                    class="key letterl"
+                    @click="$emit('typed', 'L')"
+                />
+                <button
+                    :disabled="this.disabledMap['M']"
+                    class="key letterm"
+                    @click="$emit('typed', 'M')"
+                />
             </div>
             <div class="lastrow">
-                <button class="key letterw" @click="$emit('typed', 'W')" />
-                <button class="key letterx" @click="$emit('typed', 'X')" />
-                <button class="key letterc" @click="$emit('typed', 'C')" />
-                <button class="key letterv" @click="$emit('typed', 'V')" />
-                <button class="key letterb" @click="$emit('typed', 'B')" />
-                <button class="key lettern" @click="$emit('typed', 'N')" />
+                <button
+                    :disabled="this.disabledMap['W']"
+                    class="key letterw"
+                    @click="$emit('typed', 'W')"
+                />
+                <button
+                    :disabled="this.disabledMap['X']"
+                    class="key letterx"
+                    @click="$emit('typed', 'X')"
+                />
+                <button
+                    :disabled="this.disabledMap['C']"
+                    class="key letterc"
+                    @click="$emit('typed', 'C')"
+                />
+                <button
+                    :disabled="this.disabledMap['V']"
+                    class="key letterv"
+                    @click="$emit('typed', 'V')"
+                />
+                <button
+                    :disabled="this.disabledMap['B']"
+                    class="key letterb"
+                    @click="$emit('typed', 'B');"
+                />
+                <button
+                    :disabled="this.disabledMap['N']"
+                    class="key lettern"
+                    @click="$emit('typed', 'N')"
+                />
             </div>
         </div>
         <div class="submit">
-            <button class="ok" @click="$emit('typed', 'ok')" />
+            <button class="ok" @click="okBtnClicked" />
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    emits: ['typed']
+    props: ['letter'],
+    data() {
+        return {
+            disabledMap: {
+                'A': false, 'B': false, 'C': false, 'D': false, 'E': false, 'F': false,
+                'G': false, 'H': false, 'I': false, 'J': false, 'K': false, 'L': false,
+                'M': false, 'N': false, 'O': false, 'P': false, 'Q': false, 'R': false,
+                'S': false, 'T': false, 'U': false, 'V': false, 'W': false, 'X': false,
+                'Y': false, 'Z': false
+            }
+        }
+    },
+    emits: ['typed'],
+    methods: {
+        okBtnClicked() {
+            this.disabledMap[this.letter] = true
+            this.$emit('typed', 'ok')
+        },
+    },
 }
 </script>
 
 <style>
+button:disabled {
+    background-color: #ffffff;
+}
 .ok {
     background: url("./icons/check.png") no-repeat;
     width: 80px;
