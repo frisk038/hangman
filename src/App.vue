@@ -209,12 +209,12 @@ export default {
       } catch (error) {
         console.log(error);
       }
-      this.getTopPlayer()
+      // this.getTopPlayer()
     }
   },
   async created() {
-    this.getSecret()
-    //this.getTopPlayer()
+    await this.getSecret()
+    this.getTopPlayer()
   },
   mounted() {
     this.readGameState();
