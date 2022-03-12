@@ -12,7 +12,7 @@
                         </h4>
                     </div>
 
-                    <div class="username" v-on:submit.prevent="onSubmit">
+                    <div class="username" v-on:submit.prevent="saveUser">
                         <form class="unform">
                             <div class="inputtextdiv">
                                 <input
@@ -123,8 +123,24 @@ export default {
                 alert('Oups y a une erreur');
             }
         },
-        onSubmit() {
-            console.log(this.username)
+        async saveUser() {
+            try {
+                let post = await fetch("https://hangman-poisoned.herokuapp.com/user",
+                    {
+                        method: "POST",
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: JSON.stringify({
+                            'user_id': this.userID,
+                            'secret_num': this.secretNumber,
+                            'score': this.nbFail,
+                            'username': this.username
+                        })
+                    })
+                var response = await post.json();
+                console.log(response)
+            } catch (error) {
+                console.log(error);
+            }
         }
     },
 };
