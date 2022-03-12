@@ -80,12 +80,14 @@ export default {
   },
   methods: {
     typed(key) {
-      if (this.nbFail < this.nbMaxPlay && this.gameState != 0) {
-        if (key == "ok") {
-          this.checkLetter()
-        }
-        else {
-          this.letter = key
+      if (this.gameState == 0) {
+        if (this.nbFail < this.nbMaxPlay) {
+          if (key == "ok") {
+            this.checkLetter()
+          }
+          else {
+            this.letter = key
+          }
         }
       }
     },
