@@ -4,17 +4,51 @@
             <section class="modal-body">
                 <div v-if="nbFail != 10">
                     <h1>Félicitations 🎉</h1>
-                    <span>Bravo, tu as gagné! Reviens demain pour un nouveau défi.</span>
+                    <div class="wintext">
+                        <h3>Bravo, tu as gagné! Reviens demain pour un nouveau défi.</h3>
+                        <h4>
+                            Tu peux aussi entrer ton pseudo pour la gloire
+                            <br />(3 chiffres/lettres max.)
+                        </h4>
+                    </div>
+
+                    <div class="username" v-on:submit.prevent="onSubmit">
+                        <form class="unform">
+                            <div class="inputtextdiv">
+                                <input
+                                    v-model="username"
+                                    type="text"
+                                    maxlength="3"
+                                    pattern="[a-zA-Z0-9-]+"
+                                    class="userinput"
+                                    onkeyup="
+                            var start = this.selectionStart;
+                            var end = this.selectionEnd;
+                            this.value = this.value.toUpperCase();
+                            this.setSelectionRange(start, end);"
+                                    required
+                                />
+                            </div>
+                            <div class="submitdiv">
+                                <button class="submit"></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div v-else>
                     <h1>Perdu 🥺</h1>
-                    <span>Le mot secret était : {{ mergedWord }}</span>
-                    <br />
-                    <span>Arf, dommage! Retente ta chance demain!</span>
+                    <div class="wintext">
+                        <h4>Arf, dommage! Retente ta chance demain!</h4>
+                        <h4>Le mot secret était : {{ mergedWord }}</h4>
+                        <br />
+                    </div>
                 </div>
 
-                <div class="share">
-                    <button v-on:click="generateClipboard">Partage ta partie</button>
+                <div class="sharediv">
+                    <h4>Copie ta partie pour la partager, garantie sans spoil.</h4>
+                    <div class="sharebtndiv">
+                        <button v-on:click="generateClipboard" class="sharebtn"></button>
+                    </div>
                 </div>
             </section>
         </div>
@@ -24,6 +58,11 @@
 <script>
 export default {
     props: ['nbFail', 'mergedWord'],
+    data() {
+        return {
+            username: ""
+        }
+    },
     methods: {
         generateClipboard() {
             var text = "Poisoned\n\n"
@@ -45,19 +84,19 @@ export default {
                     text += "🟩🟩🟩🟩🟩🟩🟩⬜️⬜️⬜️  70%\n\n"
                     break;
                 case 4:
-                    text += "Il a transpiré...\n"
+                    text += "A transpiré...\n"
                     text += "🟨🟨🟨🟨🟨🟨⬜️⬜️⬜️⬜️  60%\n\n"
                     break;
                 case 5:
-                    text += "Il a transpiré...\n"
+                    text += "A transpiré...\n"
                     text += "🟨🟨🟨🟨🟨⬜️⬜️⬜️⬜️⬜️  50%\n\n"
                     break;
                 case 6:
-                    text += "Il a transpiré...\n"
+                    text += "A transpiré...\n"
                     text += "🟧🟧🟧🟧⬜️⬜️⬜️⬜️⬜️⬜️  40%\n\n"
                     break;
                 case 7:
-                    text += "Il a transpiré...\n"
+                    text += "A transpiré...\n"
                     text += "🟧🟧🟧⬜️⬜️⬜️⬜️⬜️⬜️⬜️  30%\n\n"
                     break;
                 case 8:
@@ -65,7 +104,7 @@ export default {
                     text += "🟥🟥⬜️⬜️⬜️⬜️⬜️⬜️⬜️⬜️  20%\n\n"
                     break;
                 case 9:
-                    text += "A eu chaud aux fesses !\n"
+                    text += "A glissé !\n"
                     text += "🟥⬜️⬜️⬜️⬜️⬜️⬜️⬜️⬜️⬜️  10%\n\n"
                     break;
                 case 10:
@@ -83,6 +122,9 @@ export default {
             } catch ($e) {
                 alert('Oups y a une erreur');
             }
+        },
+        onSubmit() {
+            console.log(this.username)
         }
     },
 };
@@ -113,13 +155,54 @@ export default {
     color: #ffffff;
 }
 
-.share {
-    margin: 0 auto;
+.username {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+
+.unform {
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.inputtextdiv {
+    display: flex;
+    align-items: center;
+}
+.userinput {
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.submitdiv {
+    display: flex;
+    align-items: center;
+}
+.submit {
+    background: url("./icons/check.png") no-repeat;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.wintext {
     text-align: center;
 }
 
-.shareTab {
-    margin: 0 auto;
+.sharediv {
     text-align: center;
+}
+
+.sharebtn {
+    background: url("./icons/clipboard.png") no-repeat;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    border-radius: 10px;
 }
 </style>
