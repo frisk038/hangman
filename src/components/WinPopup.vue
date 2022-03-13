@@ -205,6 +205,7 @@ export default {
     display: flex;
     flex-flow: column;
     align-items: center;
+    text-align: center;
 }
 
 .sharebtn {
