@@ -29,6 +29,7 @@ import Ranking from "./components/Ranking.vue";
       :secretNumber="secretNumber"
     ></Head>
   </div>
+  <div class="username" v-if="this.cookieUserName != ''">Hey {{ this.cookieUserName }} 👋🏾</div>
   <div class="game">
     <div class="guessword">
       <h1>{{ letter }}</h1>

@@ -23,7 +23,7 @@
                                     v-model="username"
                                     type="text"
                                     maxlength="3"
-                                    pattern="[a-zA-Z0-9-]+"
+                                    pattern="[A-Z0-9-]+"
                                     class="userinput"
                                     onkeyup="
                             var start = this.selectionStart;
