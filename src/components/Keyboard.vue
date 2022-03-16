@@ -162,9 +162,38 @@ export default {
     methods: {
         okBtnClicked() {
             this.disabledMap[this.letter] = true
+            this.storeKeyboardState()
             this.$emit('typed', 'ok')
         },
+        storeKeyboardState() {
+            let date = new Date();
+            var midnight = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
+            document.cookie = "keyboard" + "=" + JSON.stringify(this.disabledMap) + ";expires=" + midnight.toUTCString();
+        },
+        readKeyboardState() {
+            var keyStr = this.getCookie("keyboard")
+            if (keyStr != "") {
+                this.disabledMap = JSON.parse(keyStr)
+            }
+        },
+        getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
     },
+    mounted() {
+        this.readKeyboardState()
+    }
 }
 </script>
 

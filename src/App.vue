@@ -108,13 +108,12 @@ export default {
         this.letter = "_"
         if (this.nbFail == this.nbMaxPlay) {
           this.gameState = -1
-          this.storeGameState()
           this.saveScore()
         } else if (!this.guessWord.includes("_")) {
           this.gameState = 1
-          this.storeGameState()
           this.saveScore()
         }
+        this.storeGameState()
       }
     },
     storeGameState() {
@@ -122,6 +121,7 @@ export default {
       var midnight = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
       setCookieAndExpire("gamestate", this.gameState, midnight)
       setCookieAndExpire("nbfail", this.nbFail, midnight)
+      setCookieAndExpire("guessword", JSON.stringify(this.guessWord), midnight)
     },
     readGameState() {
       var state = getCookie("gamestate")
@@ -136,6 +136,11 @@ export default {
       if (username != "") {
         this.cookieUserName = username
         setCookieAndExpire("username", this.cookieUserName, new Date("2030/01/01"))
+      }
+      var gword = getCookie("guessword")
+      if (gword != "") {
+        this.guessWord = JSON.parse(gword)
+        console.log(this.guessWord)
       }
     },
     setUserId() {
@@ -220,9 +225,9 @@ export default {
   async created() {
     await this.getSecret()
     this.getTopPlayer()
+    this.readGameState();
   },
   mounted() {
-    this.readGameState();
     this.setUserId();
   }
 }
