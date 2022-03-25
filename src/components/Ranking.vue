@@ -4,7 +4,7 @@
             <h1>Classement 📈</h1>
             <section class="modal-body">
                 <div class="rankingdiv">
-                    <h4>Voici les trois premiers du jours !</h4>
+                    <h4>Voici les trois premiers du jour !</h4>
                     <span
                         class="numerouno"
                         v-if="ranking[0] != null"
