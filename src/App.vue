@@ -1,5 +1,6 @@
 <script setup>
 import { v4 as uuidv4 } from 'uuid';
+import confetti from 'canvas-confetti'
 import Head from "./components/Head.vue";
 import Keyboard from "./components/Keyboard.vue";
 import Gamestate from "./components/Gamestate.vue";
@@ -112,6 +113,11 @@ export default {
         } else if (!this.guessWord.includes("_")) {
           this.gameState = 1
           this.saveScore()
+          confetti({
+            particleCount: 100,
+            spread: 100,
+            origin: { x: 0.5, y: 0.8 }
+          });
         }
         this.storeGameState()
       }
