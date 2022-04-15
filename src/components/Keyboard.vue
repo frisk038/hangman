@@ -146,7 +146,7 @@
 
 <script>
 export default {
-    props: ['letter'],
+    props: ['letter', 'secretNumber'],
     data() {
         return {
             disabledMap: {
@@ -161,9 +161,13 @@ export default {
     emits: ['typed'],
     methods: {
         okBtnClicked() {
-            this.disabledMap[this.letter] = true
-            this.storeKeyboardState()
-            this.$emit('typed', 'ok')
+            if (this.secretNumber != 0) { // game finished load
+                this.disabledMap[this.letter] = true
+                this.storeKeyboardState()
+                this.$emit('typed', 'ok')
+            } else {
+                alert("2 petites secondes...je charge 🥵")
+            }
         },
         storeKeyboardState() {
             let date = new Date();

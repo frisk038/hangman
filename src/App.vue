@@ -37,7 +37,7 @@ import Ranking from "./components/Ranking.vue";
     </div>
     <Guessboard :guessWord="guessWord"></Guessboard>
     <Gamestate :nbFail="nbFail"></Gamestate>
-    <Keyboard @typed="typed" :letter="letter"></Keyboard>
+    <Keyboard @typed="typed" :letter="letter" :secretNumber="secretNumber"></Keyboard>
   </div>
 </template>
 
@@ -95,7 +95,7 @@ export default {
     },
     checkLetter() {
       var found = false;
-      if (this.letter != "_") {
+      if (this.letter != "_" && this.secretNumber != 0) {
         for (let i = 0; i < this.secretWord.length; i++) {
           const secretLetter = this.secretWord[i];
           if (secretLetter == this.letter) {
