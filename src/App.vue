@@ -14,21 +14,12 @@ import Ranking from "./components/Ranking.vue";
   <HelpPopup v-if="helpRequired" @closeHelp="helpRequired = false"></HelpPopup>
   <Ranking v-if="rankingRequired" @closeRanking="rankingRequired = false" :ranking="ranking"></Ranking>
 
-  <WinPopup
-    v-if="gameState != 0 && showWinPopup"
-    :nbFail="nbFail"
-    :mergedWord="mergedWord"
-    :cookieUserName="cookieUserName"
-    @saveUser="saveUser"
-    @closeWinPopup="showWinPopup = false"
-  ></WinPopup>
+  <WinPopup v-if="gameState != 0 && showWinPopup" :nbFail="nbFail" :mergedWord="mergedWord"
+    :cookieUserName="cookieUserName" @saveUser="saveUser" @closeWinPopup="showWinPopup = false"></WinPopup>
 
   <div class="headr">
-    <Head
-      @needHelp="helpRequired = true"
-      @showRanking="rankingRequired = true"
-      :secretNumber="secretNumber"
-    ></Head>
+
+    <Head @needHelp="helpRequired = true" @showRanking="rankingRequired = true" :secretNumber="secretNumber"></Head>
   </div>
   <div class="username" v-if="cookieUserName != ''">Hey {{ cookieUserName }} 👋🏾</div>
   <div class="game">
@@ -203,10 +194,7 @@ export default {
         let response = await fetch("https://hangman-poisoned.herokuapp.com/top?secretnb=" + this.secretNumber);
         var secretJs = await response.json();
         if (secretJs.status == "Ok") {
-          this.ranking = []
-          secretJs.leaderboard.forEach(topUser => {
-            this.ranking.push({ name: topUser.user_name, score: 10 - topUser.score })
-          });
+          this.ranking = secretJs.leaderboard
         }
       } catch (error) {
         console.log(error);

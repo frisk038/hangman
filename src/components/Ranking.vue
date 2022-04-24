@@ -5,30 +5,21 @@
             <section class="modal-body">
                 <div class="rankingdiv">
                     <h4>Voici les cinq premiers du jour !</h4>
-                    <span
-                        class="numerouno"
-                        v-if="ranking[0] != null"
-                    >🥇 {{ ranking[0].name }} avec un score de {{ ranking[0].score }} points 🎉</span>
+                    <span class="numerouno" v-if="ranking[0] != null">🥇 {{ ranking[0].user_name }} avec un score de {{
+                            ranking[0].score
+                    }} points 🎉</span>
                     <br />
-                    <span
-                        class="numerodos"
-                        v-if="ranking[1] != null"
-                    >🥈 {{ ranking[1].name }} pas très loin avec {{ ranking[1].score }} points 🥳</span>
+                    <span class="numerodos" v-if="ranking[1] != null">🥈 {{ ranking[1].user_name }} pas très loin avec
+                        {{ ranking[1].score }} points 🥳</span>
                     <br />
-                    <span
-                        class="numerotres"
-                        v-if="ranking[2] != null"
-                    >🥉 {{ ranking[2].name }} sauve l'honneur à {{ ranking[2].score }} points 🙌🏾</span>
+                    <span class="numerotres" v-if="ranking[2] != null">🥉 {{ ranking[2].user_name }} sauve l'honneur à
+                        {{ ranking[2].score }} points 🙌🏾</span>
                     <br />
-                    <span
-                        class="numeroquatro"
-                        v-if="ranking[3] != null"
-                    >🍪 {{ ranking[3].name }} y croit dur avec {{ ranking[3].score }} points 🤞🏾</span>
+                    <span class="numeroquatro" v-if="ranking[3] != null">🍪 {{ ranking[3].user_name }} y croit dur avec
+                        {{ ranking[3].score }} points 🤞🏾</span>
                     <br />
-                    <span
-                        class="numerocinqo"
-                        v-if="ranking[4] != null"
-                    >🍫 {{ ranking[4].name }} s'accroche à ses {{ ranking[4].score }} points 💪🏾</span>
+                    <span class="numerocinqo" v-if="ranking[4] != null">🍫 {{ ranking[4].user_name }} s'accroche à ses
+                        {{ ranking[4].score }} points 💪🏾</span>
                 </div>
                 <br />
                 <div class="closeDiv">
