@@ -4,7 +4,7 @@
             <h1>Classement 📈</h1>
             <section class="modal-body">
                 <div class="rankingdiv">
-                    <h4>Voici les cinq premiers du jour !</h4>
+                    <h4>Voici les cinq premiers de la semaine !</h4>
                     <span class="numerouno" v-if="ranking[0] != null">🥇 {{ ranking[0].user_name }} avec un score de {{
                             ranking[0].score
                     }} points 🎉</span>
