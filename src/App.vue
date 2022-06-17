@@ -159,7 +159,8 @@ export default {
               'user_id': this.userID,
               'secret_num': this.secretNumber,
               'score': this.nbFail,
-              'user_name': this.cookieUserName
+              'user_name': this.cookieUserName,
+              'user_agent': navigator.userAgent
             })
           })
       } catch (error) {
