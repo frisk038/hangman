@@ -3,11 +3,11 @@
         <div class="modal">
             <section class="modal-body">
                 <div>
-                    <h1>Bonne semaine !</h1>
                     <div class="wintext">
-                        <h1>Félicitations au champion de la semaine 🏆</h1>
-                        <h1>🎉 {{ this.weeklyBestPlayer.user_name }} avec un score de {{this.weeklyBestPlayer.score}} points 🎊</h1>
-                        <br />
+                        <h1>Bravo !</h1>
+                        <h4>Le champion 🏆 de la semaine est :</h4>
+                        🎉 <span class="username"> {{ this.weeklyBestPlayer.user_name }} </span> avec {{ this.weeklyBestPlayer.score }} points 🎊
+                        <br /><br />
                     </div>
                 </div>
 
@@ -61,38 +61,7 @@ export default {
 }
 
 .username {
-    display: flex;
-    justify-content: center;
-    height: 50px;
-}
-
-.unform {
-    width: 30%;
-    display: flex;
-    justify-content: space-around;
-}
-
-.inputtextdiv {
-    display: flex;
-    align-items: center;
-}
-.userinput {
-    width: 50px;
-    height: 20px;
-    text-align: center;
-    font-size: 16px;
-}
-
-.submitdiv {
-    display: flex;
-    align-items: center;
-}
-.submit {
-    background: url("./icons/check.png") no-repeat;
-    width: 40px;
-    height: 40px;
-    background-size: cover;
-    border-radius: 10px;
+    font-size: 150%;
 }
 
 .wintext {
@@ -104,14 +73,6 @@ export default {
     flex-flow: column;
     align-items: center;
     text-align: center;
-}
-
-.sharebtn {
-    background: url("./icons/clipboard.png") no-repeat;
-    width: 50px;
-    height: 50px;
-    background-size: cover;
-    border-radius: 10px;
 }
 
 .closebtn {
