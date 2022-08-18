@@ -13,14 +13,13 @@ import Ranking from "./components/Ranking.vue";
 <template>
   <HelpPopup v-if="helpRequired" @closeHelp="helpRequired = false"></HelpPopup>
   <Ranking v-if="rankingRequired" @closeRanking="rankingRequired = false" :ranking="ranking"></Ranking>
-
   <WinPopup v-if="gameState != 0 && showWinPopup" :nbFail="nbFail" :mergedWord="mergedWord"
     :cookieUserName="cookieUserName" @saveUser="saveUser" @closeWinPopup="showWinPopup = false"></WinPopup>
 
   <div class="headr">
-
     <Head @needHelp="helpRequired = true" @showRanking="rankingRequired = true" :secretNumber="secretNumber"></Head>
   </div>
+  
   <div class="username" v-if="cookieUserName != ''">Hey {{ cookieUserName }} 👋🏾</div>
   <div class="game">
     <div class="guessword">
