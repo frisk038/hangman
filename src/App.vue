@@ -232,7 +232,7 @@ export default {
     },
     async checkWeeklySmry() {
       let date = new Date()
-      if (!this.helpRequired && date.getDay() == 5) {
+      if (!this.helpRequired && date.getDay() == 1) {
         await this.getWeeklyTopPlayer();
         this.showWeeklySmry = true;
          confetti({
