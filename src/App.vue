@@ -8,6 +8,7 @@ import Guessboard from "./components/Guessboard.vue";
 import HelpPopup from "./components/HelpPopup.vue";
 import WinPopup from "./components/WinPopup.vue";
 import Ranking from "./components/Ranking.vue";
+import WeeklySmry from './components/WeeklySmry.vue';
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import Ranking from "./components/Ranking.vue";
   <Ranking v-if="rankingRequired" @closeRanking="rankingRequired = false" :ranking="ranking"></Ranking>
   <WinPopup v-if="gameState != 0 && showWinPopup" :nbFail="nbFail" :mergedWord="mergedWord"
     :cookieUserName="cookieUserName" @saveUser="saveUser" @closeWinPopup="showWinPopup = false"></WinPopup>
+  <WeeklySmry v-if="showWeeklySmry" @closeWeeklySmry="showWeeklySmry = false" :weeklyBestPlayer="weeklyBestPlayer"></WeeklySmry>
 
   <div class="headr">
     <Head @needHelp="helpRequired = true" @showRanking="rankingRequired = true" :secretNumber="secretNumber"></Head>
@@ -67,7 +69,9 @@ export default {
       cookieUserName: "",
       rankingRequired: false,
       showWinPopup: true,
-      ranking: []
+      ranking: [],
+      weeklyBestPlayer: "toto",
+      showWeeklySmry: false
     }
   },
   methods: {
@@ -214,12 +218,36 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    }
+    },
+    async getWeeklyTopPlayer() {
+      try {
+        let response = await fetch("https://hangman-poisoned.herokuapp.com/top?secretnb=" + (this.secretNumber-1));
+        var secretJs = await response.json();
+        if (secretJs.status == "Ok")  {
+          this.weeklyBestPlayer = secretJs.leaderboard[0]
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async checkWeeklySmry() {
+      let date = new Date()
+      if (!this.helpRequired && date.getDay() == 1) {
+        await this.getWeeklyTopPlayer();
+        this.showWeeklySmry = true;
+         confetti({
+            particleCount: 100,
+            spread: 100,
+            origin: { x: 0.5, y: 0.8 }
+          });
+      }
+    },
   },
   async created() {
-    await this.getSecret()
-    this.getTopPlayer()
+    await this.getSecret();
+    this.getTopPlayer();
     this.readGameState();
+    this.checkWeeklySmry();
   },
   mounted() {
     this.setUserId();
