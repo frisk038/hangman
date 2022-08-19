@@ -232,7 +232,7 @@ export default {
     },
     async checkWeeklySmry() {
       let date = new Date()
-      if (!this.helpRequired && getCookie("gamestate") == "" && date.getDay() == 5) {
+      if (!this.helpRequired && getCookie("gamestate") == "" && date.getDay() == 1) {
         await this.getWeeklyTopPlayer();
         this.showWeeklySmry = true;
          confetti({

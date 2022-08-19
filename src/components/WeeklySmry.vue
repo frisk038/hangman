@@ -8,8 +8,10 @@
                         <h4>Le champion 🏆 de la semaine est :</h4>
                         🎉 <span class="username"> {{ this.weeklyBestPlayer.user_name }} </span> avec {{ this.weeklyBestPlayer.score }} points 🎊
                         <br /><br />
-                        <img class="gif" :src=this.gifUrl />
-                        <br /><br />
+                        <div class="gifdiv">
+                            <img class="gif" :src=this.gifUrl />
+                        </div>
+                        <br />
                     </div>
                 </div>
 
@@ -107,8 +109,14 @@ export default {
     justify-content: space-around;
 }
 
-.gif {
-    max-width: 100%;
-    /* height: 50%; */
+.gifdiv {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
+.gif {
+    width: 50%;
+    height: 20%;
+}
+
 </style>
