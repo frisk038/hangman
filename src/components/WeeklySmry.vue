@@ -108,7 +108,7 @@ export default {
 }
 
 .gif {
-    /* max-width: 50%;
-    height: 50%; */
+    max-width: 100%;
+    /* height: 50%; */
 }
 </style>
