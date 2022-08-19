@@ -8,6 +8,8 @@
                         <h4>Le champion 🏆 de la semaine est :</h4>
                         🎉 <span class="username"> {{ this.weeklyBestPlayer.user_name }} </span> avec {{ this.weeklyBestPlayer.score }} points 🎊
                         <br /><br />
+                        <img class="gif" :src=this.gifUrl />
+                        <br /><br />
                     </div>
                 </div>
 
@@ -29,9 +31,26 @@ export default {
     emits: ['closeWeeklySmry'],
     data() {
         return {
-            winner: ""
+            gifUrl: "toto"
         }
     },
+    methods: {
+        async getWinGif() {
+            try {
+                let response = await fetch("https://hangman-poisoned.herokuapp.com/wingif");
+                if (response.status == 200) {
+                    var gif = await response.json();
+                    this.gifUrl = gif.url
+                }
+
+            } catch (error) {
+                console.log(error);
+            }
+        },
+    },
+    async created() {
+        this.getWinGif()
+    }
 };
 </script>
 
@@ -86,5 +105,10 @@ export default {
     width: 200px;
     display: flex;
     justify-content: space-around;
+}
+
+.gif {
+    max-width: 50%;
+    height: 50%;
 }
 </style>
