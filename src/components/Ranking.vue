@@ -62,6 +62,7 @@ export default {
     flex-flow: column;
     align-content: center;
     align-items: center;
+    border-radius: 20px;
 }
 
 .modal-body {
