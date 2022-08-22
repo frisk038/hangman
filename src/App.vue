@@ -222,9 +222,10 @@ export default {
     async getWeeklyTopPlayer() {
       try {
         let response = await fetch("https://hangman-poisoned.herokuapp.com/weeklywinner?secretnb=" + (this.secretNumber-1));
-        var secretJs = await response.json();
-        if (secretJs.status == "Ok")  {
-          this.weeklyBestPlayer = secretJs.leaderboard[0]
+        console.log(response)
+        if (response.status == 200)  {
+          var secretJs = await response.json();
+          this.weeklyBestPlayer = secretJs
         }
       } catch (error) {
         console.log(error);
