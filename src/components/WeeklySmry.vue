@@ -33,7 +33,7 @@ export default {
     emits: ['closeWeeklySmry'],
     data() {
         return {
-            gifUrl: "toto"
+            gifUrl: "empty"
         }
     },
     methods: {
@@ -50,7 +50,7 @@ export default {
             }
         },
     },
-    async created() {
+    created() {
         this.getWinGif()
     }
 };

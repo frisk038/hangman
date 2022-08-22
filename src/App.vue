@@ -140,7 +140,6 @@ export default {
       var gword = getCookie("guessword")
       if (gword != "") {
         this.guessWord = JSON.parse(gword)
-        console.log(this.guessWord)
       }
     },
     setUserId() {
@@ -222,7 +221,6 @@ export default {
     async getWeeklyTopPlayer() {
       try {
         let response = await fetch("https://hangman-poisoned.herokuapp.com/weeklywinner?secretnb=" + (this.secretNumber-1));
-        console.log(response)
         if (response.status == 200)  {
           var secretJs = await response.json();
           this.weeklyBestPlayer = secretJs
