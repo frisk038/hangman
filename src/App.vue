@@ -221,7 +221,7 @@ export default {
     },
     async getWeeklyTopPlayer() {
       try {
-        let response = await fetch("https://hangman-poisoned.herokuapp.com/top?secretnb=" + (this.secretNumber-1));
+        let response = await fetch("https://hangman-poisoned.herokuapp.com/weeklywinner?secretnb=" + (this.secretNumber-1));
         var secretJs = await response.json();
         if (secretJs.status == "Ok")  {
           this.weeklyBestPlayer = secretJs.leaderboard[0]
@@ -232,7 +232,7 @@ export default {
     },
     async checkWeeklySmry() {
       let date = new Date()
-      if (!this.helpRequired && getCookie("gamestate") == "" && date.getDay() == 7) {
+      if (!this.helpRequired && getCookie("gamestate") == "" && date.getDay() == 1) {
         await this.getWeeklyTopPlayer();
         this.showWeeklySmry = true;
          confetti({
