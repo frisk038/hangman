@@ -153,7 +153,7 @@ export default {
     },
     async saveScore() {
       try {
-        let post = await fetch("https://hangman-server-production.up.railway.app/score",
+        let post = await fetch("https://poisoned-api.nw.r.appspot.com/score",
           {
             method: "POST",
             headers: { 'Content-Type': 'text/plain' },
@@ -171,7 +171,7 @@ export default {
     },
     async saveUser(username) {
       try {
-        let post = await fetch("https://hangman-server-production.up.railway.app/user",
+        let post = await fetch("https://poisoned-api.nw.r.appspot.com/user",
           {
             method: "POST",
             headers: { 'Content-Type': 'text/plain' },
@@ -194,7 +194,7 @@ export default {
     },
     async getTopPlayer() {
       try {
-        let response = await fetch("https://hangman-server-production.up.railway.app/top?secretnb=" + this.secretNumber);
+        let response = await fetch("https://poisoned-api.nw.r.appspot.com/top?secretnb=" + this.secretNumber);
         var secretJs = await response.json();
         if (secretJs.status == "Ok") {
           this.ranking = secretJs.leaderboard
@@ -205,7 +205,7 @@ export default {
     },
     async getSecret() {
       try {
-        let response = await fetch("https://hangman-server-production.up.railway.app/secret");
+        let response = await fetch("https://poisoned-api.nw.r.appspot.com/secret");
         var secretJs = await response.json();
         this.secretWord = secretJs.secret;
         this.secretNumber = secretJs.number;
@@ -220,7 +220,7 @@ export default {
     },
     async getWeeklyTopPlayer() {
       try {
-        let response = await fetch("https://hangman-server-production.up.railway.app/weeklywinner?secretnb=" + (this.secretNumber-1));
+        let response = await fetch("https://poisoned-api.nw.r.appspot.com/weeklywinner?secretnb=" + (this.secretNumber-1));
         if (response.status == 200)  {
           var secretJs = await response.json();
           this.weeklyBestPlayer = secretJs
