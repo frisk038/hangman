@@ -25,7 +25,7 @@ import Snow from './components/Snow.vue';
     <Head @needHelp="helpRequired = true" @showRanking="rankingRequired = true" :secretNumber="secretNumber"></Head>
   </div>
 
-  <div class="username" v-if="cookieUserName != ''">Hey {{ cookieUserName }} 👋🏾</div>
+  <div class="username" v-if="cookieUserName != ''">Hey {{ cookieUserName }} 🎅🏾</div>
   <div class="game">
     <div class="guessword">
       <h1>{{ letter }}</h1>

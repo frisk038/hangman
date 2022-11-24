@@ -1,7 +1,7 @@
 <template>
     <div class="head">
         <button class="leadBtn" @click.self="$emit('showRanking')" />
-        <h2>POISONED #{{ secretNumber }}</h2>
+        <h2>⛄️ PZND #{{ secretNumber }} 🎄</h2>
         <button class="helpBtn" @click.self="$emit('needHelp')" />
     </div>
     <div class="sep">
@@ -25,6 +25,7 @@ export default {
     border-radius: 10px;
     display: flex;
 }
+
 .helpBtn {
     background: url("./icons/help.png") no-repeat;
     background-size: cover;
@@ -33,6 +34,7 @@ export default {
     border-radius: 10px;
     display: flex;
 }
+
 .head {
     width: 360px;
     display: flex;
@@ -40,6 +42,7 @@ export default {
     justify-content: space-between;
     margin: 5px;
 }
+
 .sep {
     width: 100%;
 }
