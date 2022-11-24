@@ -9,6 +9,7 @@ import HelpPopup from "./components/HelpPopup.vue";
 import WinPopup from "./components/WinPopup.vue";
 import Ranking from "./components/Ranking.vue";
 import WeeklySmry from './components/WeeklySmry.vue';
+import Snow from './components/Snow.vue';
 </script>
 
 <template>
@@ -16,12 +17,14 @@ import WeeklySmry from './components/WeeklySmry.vue';
   <Ranking v-if="rankingRequired" @closeRanking="rankingRequired = false" :ranking="ranking"></Ranking>
   <WinPopup v-if="gameState != 0 && showWinPopup" :nbFail="nbFail" :mergedWord="mergedWord"
     :cookieUserName="cookieUserName" @saveUser="saveUser" @closeWinPopup="showWinPopup = false"></WinPopup>
-  <WeeklySmry v-if="showWeeklySmry" @closeWeeklySmry="showWeeklySmry = false" :weeklyBestPlayer="weeklyBestPlayer"></WeeklySmry>
+  <WeeklySmry v-if="showWeeklySmry" @closeWeeklySmry="showWeeklySmry = false" :weeklyBestPlayer="weeklyBestPlayer">
+  </WeeklySmry>
 
   <div class="headr">
+
     <Head @needHelp="helpRequired = true" @showRanking="rankingRequired = true" :secretNumber="secretNumber"></Head>
   </div>
-  
+
   <div class="username" v-if="cookieUserName != ''">Hey {{ cookieUserName }} 👋🏾</div>
   <div class="game">
     <div class="guessword">
@@ -31,6 +34,8 @@ import WeeklySmry from './components/WeeklySmry.vue';
     <Gamestate :nbFail="nbFail"></Gamestate>
     <Keyboard @typed="typed" :letter="letter" :secretNumber="secretNumber"></Keyboard>
   </div>
+  <Snow />
+
 </template>
 
 <script>
@@ -54,6 +59,7 @@ function getCookie(cname) {
 }
 
 export default {
+  components: { Snow },
   data() {
     return {
       secretWord: [],
@@ -220,8 +226,8 @@ export default {
     },
     async getWeeklyTopPlayer() {
       try {
-        let response = await fetch("https://poisoned-api.nw.r.appspot.com/weeklywinner?secretnb=" + (this.secretNumber-1));
-        if (response.status == 200)  {
+        let response = await fetch("https://poisoned-api.nw.r.appspot.com/weeklywinner?secretnb=" + (this.secretNumber - 1));
+        if (response.status == 200) {
           var secretJs = await response.json();
           this.weeklyBestPlayer = secretJs
         }
@@ -234,11 +240,11 @@ export default {
       if (!this.helpRequired && getCookie("gamestate") == "" && date.getDay() == 1) {
         await this.getWeeklyTopPlayer();
         this.showWeeklySmry = true;
-         confetti({
-            particleCount: 100,
-            spread: 100,
-            origin: { x: 0.5, y: 0.8 }
-          });
+        confetti({
+          particleCount: 100,
+          spread: 100,
+          origin: { x: 0.5, y: 0.8 }
+        });
       }
     },
   },
