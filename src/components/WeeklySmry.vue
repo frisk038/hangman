@@ -6,7 +6,9 @@
                     <div class="wintext">
                         <h1>Bravo !</h1>
                         <h4>Le champion 🏆 de la semaine est :</h4>
-                        🎉 <span class="username"> {{ this.weeklyBestPlayer.user_name }} </span> avec {{ this.weeklyBestPlayer.score }} points 🎊
+                        🎉 <span class="username"> {{ this.weeklyBestPlayer.user_name }} </span> avec {{
+        this.weeklyBestPlayer.score
+}} points 🎊
                         <br /><br />
                         <div class="gifdiv">
                             <img class="gif" :src=this.gifUrl />
@@ -39,7 +41,7 @@ export default {
     methods: {
         async getWinGif() {
             try {
-                let response = await fetch("https://hangman-poisoned.herokuapp.com/wingif");
+                let response = await fetch("https://poisoned-api.nw.r.appspot.com/wingif");
                 if (response.status == 200) {
                     var gif = await response.json();
                     this.gifUrl = gif.url
@@ -56,7 +58,7 @@ export default {
 };
 </script>
 
- <style scoped>
+<style scoped>
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -104,6 +106,7 @@ export default {
     background-size: cover;
     border-radius: 10px;
 }
+
 .btndiv {
     width: 200px;
     display: flex;
@@ -115,9 +118,9 @@ export default {
     flex-flow: column;
     align-items: center;
 }
+
 .gif {
     width: 50%;
     height: 20%;
 }
-
 </style>
