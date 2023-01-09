@@ -2,43 +2,52 @@
     <div id="app">
 
         <Particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded" :options="{
-            fpsLimit: 120,
-            particles: {
-                color: {
-                    value: '#fff'
-                },
-                move: {
-                    direction: 'bottom',
-                    enable: true,
-                    outMode: 'out',
-                    speed: 2,
-                },
-                number: {
-                    density: {
-                        enable: true,
-                        area: 3000
-                    },
-                    value: 400
-                },
-                opacity: {
-                    value: 0.7
-                },
-                shape: {
-                    type: 'circle'
-                },
-                size: {
-                    random: true,
-                    value: 8
-                },
-                zIndex: {
-                    value:{
-                        min:0,
-                        max:100
-                    }
-                }
+    fpsLimit: 120,
+    particles: {
+        color: {
+            value: '#fff'
+        },
+        move: {
+            direction: 'bottom',
+            enable: true,
+            outMode: 'out',
+            speed: 2,
+        },
+        number: {
+            density: {
+                enable: true,
+                area: 3000
             },
-            detectRetina: true
-        }" />
+            value: 400
+        },
+        opacity: {
+            value: 0.7
+        },
+        shape: {
+            type: 'char',
+            character: [
+                {
+                    fill: true,
+                    font: 'Verdana',
+                    value: ['💩', '🤡', '🍀', '🍙'],
+                    style: '',
+                    weight: 400
+                }
+            ]
+        },
+        size: {
+            random: true,
+            value: 8
+        },
+        zIndex: {
+            value: {
+                min: 0,
+                max: 100
+            }
+        }
+    },
+    detectRetina: true
+}" />
     </div>
 </template>
 
@@ -56,11 +65,11 @@ const particlesLoaded = async container => {
 
 export default {
     data() {
-    return {
-        particlesInit,
-        particlesLoaded,
-    }
-  },
+        return {
+            particlesInit,
+            particlesLoaded,
+        }
+    },
 }
 </script>
 

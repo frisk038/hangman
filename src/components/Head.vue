@@ -1,7 +1,7 @@
 <template>
     <div class="head">
         <button class="leadBtn" @click.self="$emit('showRanking')" />
-        <h2>⛄️ PZND #{{ secretNumber }} 🎄</h2>
+        <h2>Poisoned #{{ secretNumber }} </h2>
         <button class="helpBtn" @click.self="$emit('needHelp')" />
     </div>
     <div class="sep">
