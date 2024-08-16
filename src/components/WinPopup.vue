@@ -58,6 +58,14 @@
                             <button @click="$emit('closeWinPopup')" class="closebtn"></button>
                         </div>
                     </div>
+                    <div class="newgamediv">
+                        <h4>Tu peux aussi jouer au nouveau jeu wordcraft !</h4>
+                            <div class="gobtndiv">
+                                <a href="https://iwordcraft.netlify.app">
+                                    <button class="gobtn"></button>
+                                </a>
+                            </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -211,6 +219,14 @@ export default {
 
 .sharebtn {
     background: url("./icons/clipboard.png") no-repeat;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.gobtn {
+    background: url("./icons/goto.png") no-repeat;
     width: 50px;
     height: 50px;
     background-size: cover;
