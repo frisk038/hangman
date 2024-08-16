@@ -225,7 +225,7 @@ export default {
     },
     async getWeeklyTopPlayer() {
       try {
-        let response = await fetch("https://poisoned-api.nw.r.appspot.com/weeklywinner?secretnb=" + (this.secretNumber - 1));
+        let response = await fetch("https://poisoned-api.nw.r.appspot.com/weeklywinner?secretnb=" + this.secretNumber);
         if (response.status == 200) {
           var secretJs = await response.json();
           this.weeklyBestPlayer = secretJs
